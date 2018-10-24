@@ -1,0 +1,17 @@
+Library
+library
+builds
+.vs
+temp
+Temp
+*.mp4
+*.csproj
+/*.sln
+/*.userprefs
+*.DotSettings
+*.meta
+.idea
+/obj/
+*.sln.DotSettings.user
+Spine Examples
+

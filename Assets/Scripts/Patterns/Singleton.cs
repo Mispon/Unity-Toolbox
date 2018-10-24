@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets.Scripts.Toolbox.Patterns {
+namespace Assets.Scripts.Patterns {
     /// <summary>
     /// Паттерн "Одиночка"
     /// </summary>
