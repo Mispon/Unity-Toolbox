@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 
-namespace Assets.Scripts.Toolbox.Extensions {
+namespace Assets.Scripts.Toolsbox.Extensions {
     /// <summary>
     /// Класс-расширение для enum
     /// </summary>

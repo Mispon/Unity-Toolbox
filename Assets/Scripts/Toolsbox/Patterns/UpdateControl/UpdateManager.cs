@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Assets.Scripts.Patterns.UpdateControl {
+namespace Assets.Scripts.Toolsbox.Patterns.UpdateControl {
     [Flags]
     public enum UpdateType {
         Common,

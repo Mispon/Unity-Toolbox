@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets.Scripts.Patterns.UpdateControl {
+namespace Assets.Scripts.Toolsbox.Patterns.UpdateControl {
     /// <summary>
     /// Определяет контролируемое поведение обновлений
     /// </summary>

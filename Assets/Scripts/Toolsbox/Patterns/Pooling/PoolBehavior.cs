@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-namespace Assets.Scripts.Patterns.Pooling {
+namespace Assets.Scripts.Toolsbox.Patterns.Pooling {
     /// <summary>
     /// Базовый класс всех объектов, используемых в пуле
     /// </summary>

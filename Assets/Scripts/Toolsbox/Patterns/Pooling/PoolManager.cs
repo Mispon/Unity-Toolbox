@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Assets.Scripts.Patterns.Pooling {
+namespace Assets.Scripts.Toolsbox.Patterns.Pooling {
     /// <summary>
     /// Мэнеджер объектов
     /// </summary>

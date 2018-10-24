@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Assets.Scripts.Toolbox.Extensions {
+namespace Assets.Scripts.Toolsbox.Extensions {
     /// <summary>
     /// Класс-расширение для перечислений
     /// </summary>
