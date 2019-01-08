@@ -3,48 +3,50 @@ using System.Collections.Generic;
 
 namespace Assets.Scripts.Toolsbox.Patterns {
     /// <summary>
-    /// Типы событий
+    /// Events types
     /// </summary>
     public enum EventType {
         StartGame,
-        RestartGame
+        RestartGame,
+        LangChanged
     }
 
     /// <summary>
-    /// Паттерн "Мэнеджер событий"
+    /// Event manager pattern
     /// </summary>
     public class EventManager {
-        private static readonly Dictionary<EventType, List<Action>> _handlers = new Dictionary<EventType, List<Action>>();
+        private static readonly Dictionary<EventType, List<Action<object[]>>> _handlers = 
+            new Dictionary<EventType, List<Action<object[]>>>();
 
         /// <summary>
-        /// Добавляет обработчик события
+        /// Add new event handler
         /// </summary>
-        public static void AddHandler(EventType type, Action handler) {
+        public static void AddHandler(EventType type, Action<object[]> handler) {
             if (_handlers.ContainsKey(type)) {
                 _handlers[type].Add(handler);
             }
             else {
-                var handlers = new List<Action> {handler};
+                var handlers = new List<Action<object[]>> {handler};
                 _handlers.Add(type, handlers);
             }
         }
 
         /// <summary>
-        /// Удаляет обработчик события
+        /// Remove event handler
         /// </summary>
-        public static void RemoveHandler(EventType type) {
+        public static void RemoveHandler(EventType type, Action<object[]> handler) {
             if (_handlers.ContainsKey(type)) {
-                _handlers.Remove(type);
+                _handlers[type].Remove(handler);
             }
         }
 
         /// <summary>
-        /// Посылает сообщение об эвенте обработчикам
+        /// Raise some event to all listeners
         /// </summary>
-        public static void RaiseEvent(EventType type) {
+        public static void RaiseEvent(EventType type, params object[] args) {
             if (_handlers.ContainsKey(type)) {
                 foreach (var handler in _handlers[type]) {
-                    handler();
+                    handler(args);
                 }
             }
         }

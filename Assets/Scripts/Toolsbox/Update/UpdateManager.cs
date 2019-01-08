@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using Assets.Scripts.Toolsbox.Patterns;
 
-namespace Assets.Scripts.Toolsbox.Patterns.UpdateControl {
+namespace Assets.Scripts.Toolsbox.Update {
     [Flags]
     public enum UpdateType {
         Common,
@@ -10,18 +11,18 @@ namespace Assets.Scripts.Toolsbox.Patterns.UpdateControl {
     }
 
     /// <summary>
-    /// Управление апдейтами игры
+    /// Manage game updates
     /// </summary>
     public class UpdateManager : Singleton<UpdateManager> {
         /// <summary>
-        /// Обработчики апдейтов
+        /// Updates handlers
         /// </summary>
-        private readonly List<UpdateBehavior> _updateHandlers = new List<UpdateBehavior>();
-        private readonly List<UpdateBehavior> _fixedUpdateHandlers = new List<UpdateBehavior>();
-        private readonly List<UpdateBehavior> _lateUpdateHandlers = new List<UpdateBehavior>();
+        private readonly List<IUpdateBehavior> _updateHandlers = new List<IUpdateBehavior>();
+        private readonly List<IUpdateBehavior> _fixedUpdateHandlers = new List<IUpdateBehavior>();
+        private readonly List<IUpdateBehavior> _lateUpdateHandlers = new List<IUpdateBehavior>();
 
         /// <summary>
-        /// Обычное обновление
+        /// Single regular update
         /// </summary>
         private void Update () {
             foreach (var handler in _updateHandlers) {
@@ -30,7 +31,7 @@ namespace Assets.Scripts.Toolsbox.Patterns.UpdateControl {
         }
 
         /// <summary>
-        /// Обновление с фиксированной частотой
+        /// Single fixed update
         /// </summary>
         private void FixedUpdate() {
             foreach (var handler in _fixedUpdateHandlers) {
@@ -39,7 +40,7 @@ namespace Assets.Scripts.Toolsbox.Patterns.UpdateControl {
         }
 
         /// <summary>
-        /// Позднее обновление, вызывается после всех обычных и фиксированных обновлений
+        /// Single late update
         /// </summary>
         private void LateUpdate() {
             foreach (var handler in _lateUpdateHandlers) {
@@ -48,18 +49,18 @@ namespace Assets.Scripts.Toolsbox.Patterns.UpdateControl {
         }
 
         /// <summary>
-        /// Добавляет новый обработчик обновлений
+        /// Add updates handler
         /// </summary>
-        public void AddHandler(UpdateBehavior handler, UpdateType type) {
+        public void AddHandler(IUpdateBehavior handler, UpdateType type) {
             if (type.HasFlag(UpdateType.Common)) _updateHandlers.Add(handler);
             if (type.HasFlag(UpdateType.Fixed)) _fixedUpdateHandlers.Add(handler);
             if (type.HasFlag(UpdateType.Late)) _lateUpdateHandlers.Add(handler);
         }
 
         /// <summary>
-        /// Удаляет обработчик обновлений
+        /// Remove updates handler
         /// </summary>
-        public void RemoveHandler(UpdateBehavior handler) {
+        public void RemoveHandler(IUpdateBehavior handler) {
             if (_updateHandlers.Contains(handler)) _updateHandlers.Remove(handler);
             if (_fixedUpdateHandlers.Contains(handler)) _fixedUpdateHandlers.Remove(handler);
             if (_lateUpdateHandlers.Contains(handler)) _lateUpdateHandlers.Remove(handler);

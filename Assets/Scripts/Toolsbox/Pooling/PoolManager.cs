@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Assets.Scripts.Toolsbox.Patterns;
 
-namespace Assets.Scripts.Toolsbox.Patterns.Pooling {
+namespace Assets.Scripts.Toolsbox.Pooling {
     /// <summary>
-    /// Мэнеджер объектов
+    /// Objects manager
     /// </summary>
     public class PoolManager : Singleton<PoolManager> {
 
@@ -12,7 +13,7 @@ namespace Assets.Scripts.Toolsbox.Patterns.Pooling {
         public PoolBehavior[] Objects;
 
         /// <summary>
-        /// Игровые объекты пула
+        /// Pool of game objects
         /// </summary>
         private readonly Dictionary<Type, List<PoolBehavior>> _objects = new Dictionary<Type, List<PoolBehavior>>();
 
@@ -22,7 +23,7 @@ namespace Assets.Scripts.Toolsbox.Patterns.Pooling {
         }
 
         /// <summary>
-        /// Предварительное заполнение пула
+        /// Pre-fill pool
         /// </summary>
         private void Initialize() {
             foreach (var prefab in Objects) {
@@ -39,7 +40,7 @@ namespace Assets.Scripts.Toolsbox.Patterns.Pooling {
         }
 
         /// <summary>
-        /// Возвращает список объектов из пула
+        /// Returns a list of objects from the pool
         /// </summary>
         public List<T> GetObjects<T>() where T : PoolBehavior {
             var key = typeof(T);
@@ -50,7 +51,7 @@ namespace Assets.Scripts.Toolsbox.Patterns.Pooling {
         }
 
         /// <summary>
-        /// Возвращает доступный игровой объект
+        /// Returns an available game object
         /// </summary>
         public T GetObject<T>() where T : PoolBehavior {
             var key = typeof(T);
@@ -59,7 +60,7 @@ namespace Assets.Scripts.Toolsbox.Patterns.Pooling {
         }
 
         /// <summary>
-        /// Возвращает существующий объект из пула
+        /// Returns an existing object from the pool
         /// </summary>
         private T FindObject<T>() where T : PoolBehavior {
             var objects = _objects[typeof(T)];
@@ -72,7 +73,7 @@ namespace Assets.Scripts.Toolsbox.Patterns.Pooling {
         }
 
         /// <summary>
-        /// Создает новый объект в пуле
+        /// Creates a new object in the pool
         /// </summary>
         private T CreateObject<T>() where T : PoolBehavior {
             var key = typeof(T);
@@ -83,11 +84,11 @@ namespace Assets.Scripts.Toolsbox.Patterns.Pooling {
         }
 
         /// <summary>
-        /// Выбрасывает исключение, если переданный ключ отсутствует в пуле
+        /// Throws an exception if the passed key is not in the pool
         /// </summary>
         private void ThrowIfKeyNotExist(Type key) {
             if (!_objects.ContainsKey(key)) {
-                throw new ArgumentException($"Ключ {key.Name} не найден в пуле объектов");
+                throw new ArgumentException($"Key {key.Name} not found in object pool");
             }
         }
     }

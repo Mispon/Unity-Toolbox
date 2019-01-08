@@ -3,11 +3,11 @@ using System.ComponentModel;
 
 namespace Assets.Scripts.Toolsbox.Extensions {
     /// <summary>
-    /// Класс-расширение для enum
+    /// Extensions for enums
     /// </summary>
     public static class EnumExtension {
         /// <summary>
-        /// Возвращает описание поля
+        /// Return enum's description
         /// </summary>
         public static string GetDescription(this Enum value) {
             var fieldInfo = value.GetType().GetField(value.ToString());
@@ -16,7 +16,7 @@ namespace Assets.Scripts.Toolsbox.Extensions {
         }
 
         /// <summary>
-        /// Возвращает значение перечисления по описанию
+        /// Return enum's value from description
         /// </summary>
         public static T GetFromDescription<T>(string desc) {
             var type = typeof(T);
@@ -24,7 +24,7 @@ namespace Assets.Scripts.Toolsbox.Extensions {
             foreach (var field in type.GetFields()) {
                 var attribute = Attribute.GetCustomAttribute(field, typeof(DescriptionAttribute)) as DescriptionAttribute;
                 if (attribute != null) {
-                    if (attribute.Description == desc) return (T)field.GetValue(null);
+                    if (attribute.Description == desc) return (T) field.GetValue(null);
                 }
                 else {
                     if (field.Name == desc) return (T) field.GetValue(null);

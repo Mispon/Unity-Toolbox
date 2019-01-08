@@ -2,11 +2,11 @@
 
 namespace Assets.Scripts.Toolsbox.Extensions {
     /// <summary>
-    /// Класс-расширение для перечислений
+    /// Extensions for enumerables
     /// </summary>
     public static class EnumerableExtension {
         /// <summary>
-        /// Создает хэшсет из перечисления
+        /// Create hash set from enumerable
         /// </summary>
         public static IEnumerable<T> ToHashSet<T>(this IEnumerable<T> source) {
             return new HashSet<T>(source);
