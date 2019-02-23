@@ -3,7 +3,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using Assets.Scripts.Toolsbox.Patterns;
 using UnityEngine;
 
-namespace Assets.Scripts.Toolsbox.Save {
+namespace Assets.Scripts.Toolsbox.Data {
     /// <summary>
     /// Save data manager
     /// </summary>
@@ -40,13 +40,12 @@ namespace Assets.Scripts.Toolsbox.Save {
                 _data = (DataToSave) _formatter.Deserialize(file);
                 file.Close();
             }
-            else {
+            else
                 _data = new DataToSave();
-            }
         }
 
         /// <summary>
-        /// Return game data
+        /// Returns game data
         /// </summary>
         public DataToSave GetData() => _data;
     }
