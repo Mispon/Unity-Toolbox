@@ -7,35 +7,35 @@ namespace Assets.Scripts.Toolsbox.Pooling {
     /// </summary>
     public class PoolBehavior : MonoBehaviour {
         /// <summary>
-        /// Активирует объект
+        /// Activate object
         /// </summary>
         public void Enable() {
             gameObject.SetActive(true);
         }
 
         /// <summary>
-        /// Деактивирует объект
+        /// Deactivate object
         /// </summary>
         public void Disable() {
             gameObject.SetActive(false);
         }
 
         /// <summary>
-        /// Деактивирует объект с задержкой
+        /// Deactivate object with delay
         /// </summary>
         public void DisableAfter(float delay) {
             StartCoroutine(DisableRoutine(delay));
         }
 
         /// <summary>
-        /// Проверяет, является ли объект активным
+        /// Check object's activity
         /// </summary>
         public bool IsActive() {
             return gameObject.activeInHierarchy;
         }
 
         /// <summary>
-        /// Корутина деактивации объекта
+        /// Coroutine of deactivation object
         /// </summary>
         private IEnumerator DisableRoutine(float delay) {
             yield return new WaitForSeconds(delay);
